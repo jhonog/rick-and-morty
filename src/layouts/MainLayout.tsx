@@ -6,8 +6,6 @@ export const MainLayout = () => {
 
     const navigationParam = useAppSelector(state => state.navigationSlice.navigationParam);
 
-    console.log(navigationParam)
-
     return (
         <div className="flex w-full h-screen overflow-y-hidden">
             <div className={`flex ${!navigationParam ? 'w-full md:w-96' : 'md:block hidden '}  md:w-96 border-r overflow-y-scroll`}>

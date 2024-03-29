@@ -10,11 +10,12 @@ import loadingImage from '../src/assets/images/loadScreen.jpg';
 
 function App() {
   const dispatch = useAppDispatch();
-
+  
   const { loading, data } = useQuery(CHARACTERS_QUERY);
 
   useEffect(() => {
     if (data) {
+      // Gets the results data and map to Character interface
       const allCharacters: Character[] = data?.characters?.results.map((character: Character) => ({
         ...character,
         isStarred: false,
@@ -22,6 +23,7 @@ function App() {
         comments: []
       }))
 
+      // Convert the list into a Key Value object for accessibility 
       const charactersMap: { [key: string]: Character } = [...allCharacters].reduce<{ [key: string]: Character }>((acc, character) => {
         acc[character.id] = character;
         return acc;

@@ -14,6 +14,7 @@ const initialState: CharactersState = {
     starredCharacters: [],
 }
 
+// Character slice for global state management
 const charactersSlice = createSlice({
     name: 'characters',
     initialState,
@@ -24,6 +25,7 @@ const charactersSlice = createSlice({
             state.otherCharacters = Object.values(allCharacters).filter(character => !character.isStarred)
             state.starredCharacters = Object.values(allCharacters).filter(character => character.isStarred)
         },
+        // Toggle the character to starred and other way around
         toggleStarredCharacter(state, action: PayloadAction<Character>) {
             const character = action.payload;
             const { id } = character;
@@ -38,6 +40,7 @@ const charactersSlice = createSlice({
             const starredCharacters = characters.filter(character => character.isStarred);
             state.starredCharacters = starredCharacters;
         },
+        // Toggle the character to inactive and other way around
         toggleInactivateCharacter(state, action: PayloadAction<Character>) {
             const character = action.payload;
             const { id } = character;

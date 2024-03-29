@@ -10,9 +10,11 @@ import { initialFilterState } from '../../utils/constants';
 
 export const Aside = () => {
 
+    // Gets the data from the store.
     const { otherCharacters, starredCharacters } = useAppSelector(state => state.charactersSlice);
     const { selectedFilters } = useAppSelector(state => state.filtersSlice);
 
+    // Aux list for character list, it helps to keep the main list clean.
     const [othersCharactersList, setOthersCharactersList] = useState<Character[]>([])
     const [starredCharactersList, setStarredCharactersList] = useState<Character[]>([])
 
@@ -29,6 +31,7 @@ export const Aside = () => {
         setStarredCharactersList(applyFilters(starredCharacters));
     }, [starredCharacters, selectedFilters])
 
+    // Listener for filters, updates validations state and filters counter.
     useEffect(() => {
         let counter = 0;
 
@@ -48,6 +51,7 @@ export const Aside = () => {
         setFiltersCount(counter);
     }, [selectedFilters])
 
+    // Apply the selected filters.
     const applyFilters = (characters: Character[]) => {
         return characters.filter((character) => {
             return (

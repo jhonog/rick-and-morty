@@ -37,39 +37,43 @@ This project uses the Rick and Morty API to fetch character information using a 
 
 2. Define a GraphQL query for retrieving character data. In your code, it looks like this:
 
-   ```javascript
-   const CHARACTERS_QUERY = gql`
-     {
-       characters {
-         results {
-           id
-           name
-           species
-           image
-           status
-           gender
-         }
-       }
-     }
-   `;
-   ```
+  ```javascript
+  const CHARACTERS_QUERY = gql`
+    {
+      characters {
+        results {
+          id
+          name
+          species
+          image
+          status
+          gender
+        }
+      }
+    }
+  `;
+  ```
 
 ## Integration with Apollo Client
 
 1. Use the useQuery hook from Apollo Client to fetch data using the defined query. Here's how it's used:
 
-const { loading, data } = useQuery(CHARACTERS_QUERY);
+  ```javascript
+    const { loading, data } = useQuery(CHARACTERS_QUERY);
+  ```
 
 This hook returns the loading state and the fetched data.
 
 2. Map the result of the query to have control over the character list, adding additional properties as needed. Here's an example:
 
-const allCharacters: Character[] = data?.characters?.results.map((character: Character) => ({
-  ...character,
-  isStarred: false,
-  isActivate: true,
-  comments: []
-}));
+  ```javascript
+    const allCharacters: Character[] = data?.characters?.results.map((character: Character) => ({
+      ...character,
+      isStarred: false,
+      isActivate: true,
+      comments: []
+    }));
+  ```
 
 Rick and Morty API Documentation
 

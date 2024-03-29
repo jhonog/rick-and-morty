@@ -64,7 +64,6 @@ export const CharacterDetail = () => {
             </div>
           }
 
-
           {
             openModal &&
             (<CommentModal setOpenModal={setOpenModal} selectedCharacter={selectedCharacter} />)

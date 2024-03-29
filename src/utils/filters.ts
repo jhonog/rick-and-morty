@@ -1,3 +1,5 @@
+// Enums for filters modal
+
 export enum CharacterFilter {
     All = 'All',
     Starred = 'Starred',
