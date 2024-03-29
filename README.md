@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
-
 # Rick and Morty List Search App
+
+## React + TypeScript + Vite
 
 ## Introduction
 
