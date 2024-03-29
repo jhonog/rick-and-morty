@@ -28,12 +28,14 @@ yarn install
 or 
 
 ``` shell
-just yarn
+yarn
 ```
 
 5. After the dependencies are installed, you can start the development server by running:
 
+``` shell
 yarn dev
+```
 
 
 This command will start the app and open it in your default web browser at http://localhost:5173.
