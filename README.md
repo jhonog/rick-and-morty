@@ -1,30 +1,74 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Rick and Morty List Search App
 
-Currently, two official plugins are available:
+## Introduction
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This README provides instructions on how to run the Rick and Morty Search app, as well as information on how to use the Rick and Morty API that's integrated into the project.
 
-## Expanding the ESLint configuration
+## How to Run the App
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To run the app locally, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
+1. Make sure you have Node.js installed on your machine.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. Install Yarn if you haven't already. You can install it globally using npm with the following command:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+npm install -g yarn
+
+3. Open your terminal and navigate to the project's root directory.
+
+4. Run the following command to install the project's dependencies:
+
+yarn install or just yarn
+
+5. After the dependencies are installed, you can start the development server by running:
+
+yarn dev
+
+
+This command will start the app and open it in your default web browser at http://localhost:5173.
+
+## GraphQL Integration
+
+This project uses the Rick and Morty API to fetch character information using a GraphQL query. Here's how it's done:
+
+1. Make sure you have Apollo Client installed as a dependency in your project.
+
+2. Define a GraphQL query for retrieving character data. In your code, it looks like this:
+
+```graphql
+const CHARACTERS_QUERY = gql`
+  {
+    characters {
+      results {
+        id
+        name
+        species
+        image
+        status
+        gender
+      }
+    }
+  } 
+
+## Integration with Apollo Client
+
+1. Use the useQuery hook from Apollo Client to fetch data using the defined query. Here's how it's used:
+
+const { loading, data } = useQuery(CHARACTERS_QUERY);
+
+This hook returns the loading state and the fetched data.
+
+2. Map the result of the query to have control over the character list, adding additional properties as needed. Here's an example:
+
+const allCharacters: Character[] = data?.characters?.results.map((character: Character) => ({
+  ...character,
+  isStarred: false,
+  isActivate: true,
+  comments: []
+}));
+
+Rick and Morty API Documentation
+
+For more information on the Rick and Morty API, including details on available queries and mutations, refer to the Rick and Morty API documentation.
