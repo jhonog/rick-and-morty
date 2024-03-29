@@ -14,13 +14,22 @@ To run the app locally, follow these steps:
 
 2. Install Yarn if you haven't already. You can install it globally using npm with the following command:
 
+``` shell
 npm install -g yarn
+```
 
 3. Open your terminal and navigate to the project's root directory.
 
 4. Run the following command to install the project's dependencies:
 
-yarn install or just yarn
+``` shell
+yarn install 
+```
+or 
+
+``` shell
+just yarn
+```
 
 5. After the dependencies are installed, you can start the development server by running:
 
