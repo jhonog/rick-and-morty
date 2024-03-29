@@ -37,20 +37,22 @@ This project uses the Rick and Morty API to fetch character information using a 
 
 2. Define a GraphQL query for retrieving character data. In your code, it looks like this:
 
-```graphql
-const CHARACTERS_QUERY = gql`
-  {
-    characters {
-      results {
-        id
-        name
-        species
-        image
-        status
-        gender
-      }
-    }
-  } 
+   ```javascript
+   const CHARACTERS_QUERY = gql`
+     {
+       characters {
+         results {
+           id
+           name
+           species
+           image
+           status
+           gender
+         }
+       }
+     }
+   `;
+   ```
 
 ## Integration with Apollo Client
 
