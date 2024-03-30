@@ -33,8 +33,8 @@ export const CharacterSummary = ({ isFavorite, selectedCharacter, setOpenModal, 
                 </div>
             </div>
 
-            <div className='flex flex-wrap items-center w-full py-4'>
-                <span className='text-2xl font-bold text-principal-50 pr-4'>{selectedCharacter.name}</span>
+            <div className='flex flex-wrap items-center w-full'>
+                <span className='text-2xl font-bold text-principal-50 pr-4 py-4'>{selectedCharacter.name}</span>
                 <button
                     className={`
                     font-bold p-2 rounded-md
@@ -46,7 +46,7 @@ export const CharacterSummary = ({ isFavorite, selectedCharacter, setOpenModal, 
                 </button>
             </div>
 
-            <div className='grid grid-col-1 divide-y w-full pt-4 border-b'>
+            <div className='grid grid-col-1 divide-y w-full border-b'>
                 <div className='flex flex-col w-full py-4'>
                     <span className='font-bold text-principal-50'>specie</span>
                     <span>{selectedCharacter.species}</span>

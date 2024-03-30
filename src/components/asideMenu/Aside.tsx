@@ -4,12 +4,14 @@ import { Character } from '../../interfaces/character';
 import { useAppSelector } from '../../store/store';
 import { Search } from './filters/Search';
 import { FiltersModal } from './filters/FiltersModal';
-import { CharacterFilter, SpecieFilter, StatusFilter } from '../../utils/filters';
 import { initialFilterState } from '../../utils/constants';
+import { useFilters } from '../../hooks/useFilter';
 
 
 export const Aside = () => {
 
+    const { filterCharacters } = useFilters();
+    
     // Gets the data from the store.
     const { otherCharacters, starredCharacters } = useAppSelector(state => state.charactersSlice);
     const { selectedFilters } = useAppSelector(state => state.filtersSlice);
@@ -24,11 +26,11 @@ export const Aside = () => {
     const [openFilters, setOpenFilters] = useState(false);
 
     useEffect(() => {
-        setOthersCharactersList(applyFilters(otherCharacters));
+        setOthersCharactersList(filterCharacters(otherCharacters, selectedFilters));
     }, [otherCharacters, selectedFilters])
 
     useEffect(() => {
-        setStarredCharactersList(applyFilters(starredCharacters));
+        setStarredCharactersList(filterCharacters(starredCharacters, selectedFilters));
     }, [starredCharacters, selectedFilters])
 
     // Listener for filters, updates validations state and filters counter.
@@ -39,7 +41,7 @@ export const Aside = () => {
         const specieFilter = selectedFilters.Specie != initialFilterState.Specie
         const genderFilter = selectedFilters.Gender != initialFilterState.Gender
         const characterStatus = selectedFilters.CharacterStatus != initialFilterState.CharacterStatus
-        const statusFilter = selectedFilters.Character != initialFilterState.Character
+        const statusFilter = selectedFilters.Status != initialFilterState.Status
 
         characterFilter && counter++;
         specieFilter && counter++;
@@ -50,20 +52,6 @@ export const Aside = () => {
         setValidationFilters(characterFilter || specieFilter || genderFilter || characterStatus || statusFilter);
         setFiltersCount(counter);
     }, [selectedFilters])
-
-    // Apply the selected filters.
-    const applyFilters = (characters: Character[]) => {
-        return characters.filter((character) => {
-            return (
-                (character.name.toLowerCase().includes(selectedFilters.name ? selectedFilters.name?.toLocaleLowerCase() : '')) &&
-                (selectedFilters.Character === CharacterFilter.All || (selectedFilters.Character === CharacterFilter.Starred && character.isStarred) || (selectedFilters.Character === CharacterFilter.Others && !character.isStarred)) &&
-                (selectedFilters.Specie === SpecieFilter.All || character.species === selectedFilters.Specie) &&
-                (selectedFilters.Gender === null || character.gender === selectedFilters.Gender) &&
-                (selectedFilters.CharacterStatus === null || character.status === selectedFilters.CharacterStatus) &&
-                (selectedFilters.Status === StatusFilter.All || (selectedFilters.Status === StatusFilter.Active && character.isActivate) || (selectedFilters.Status === StatusFilter.Inactive && !character.isActivate))
-            );
-        })
-    }
 
     return (
         <div className='pt-11 px-6 w-full text-principal-0'>
