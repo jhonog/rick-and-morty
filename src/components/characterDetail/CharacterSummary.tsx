@@ -48,15 +48,15 @@ export const CharacterSummary = ({ isFavorite, selectedCharacter, setOpenModal, 
 
             <div className='grid grid-col-1 divide-y w-full border-b'>
                 <div className='flex flex-col w-full py-4'>
-                    <span className='font-bold text-principal-50'>specie</span>
+                    <span className='font-bold text-principal-50'>Specie</span>
                     <span>{selectedCharacter.species}</span>
                 </div>
                 <div className='flex flex-col w-full py-4'>
-                    <span className='font-bold text-principal-50'>status</span>
+                    <span className='font-bold text-principal-50'>Status</span>
                     <span>{selectedCharacter.status}</span>
                 </div>
                 <div className='flex flex-col w-full py-4'>
-                    <span className='font-bold text-principal-50'>gender</span>
+                    <span className='font-bold text-principal-50'>Gender</span>
                     <span>{selectedCharacter.gender}</span>
                 </div>
             </div>
